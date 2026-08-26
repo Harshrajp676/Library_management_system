@@ -28,6 +28,37 @@ class library():
 
         self.main()
 
+    def main(self):
+        """Main input loop for the menu."""
+        while True:
+            try:
+                choice = input("\nEnter your choice: ").strip()
+            except (EOFError, KeyboardInterrupt):
+                print("\nExiting.")
+                break
+
+            if choice == "0":
+                print("Goodbye.")
+                break
+            elif choice == "1":
+                self.dis_books()
+            elif choice == "2":
+                self.add_book()
+            elif choice == "3":
+                self.edit_books()
+            elif choice == "4":
+                # minimal delete implementation to match menu
+                del_name = input("Enter Name of book to delete: ")
+                for i in list(library.lib.keys()):
+                    if library.lib[i].name == del_name:
+                        del library.lib[i]
+                        print("Book Deleted Successfully")
+                        break
+                else:
+                    print("Book Not Found")
+            else:
+                print("Invalid choice. Please try again.")
+
     def dis_books(self):
         print("--------------------------")
         for i in library.lib:
